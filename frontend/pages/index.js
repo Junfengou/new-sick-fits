@@ -1,11 +1,3 @@
-import React from "react";
+import ProductsPage from "./products";
 
-function index() {
-	return (
-		<div>
-			<p>Home page Boi</p>
-		</div>
-	);
-}
-
-export default index;
+export default ProductsPage;

@@ -6,6 +6,7 @@ import { Product } from "./schemas/Product";
 import { ProductImage } from "./schemas/ProductImage";
 import 'dotenv/config';
 import { insertSeedData } from './seed-data';
+import { sendPasswordResetEmail } from './lib/mail';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
@@ -23,6 +24,18 @@ const { withAuth } = createAuth({
   initFirstItem: {
     fields: ['name', 'email', 'password'],
     // Todo: Add in initial roles here
+  },
+  /*
+    Password reset need to be set up here
+    The args will return 3 things: ItemId, identity, and token
+    identity is the email recieved back
+    token is the reset password token
+    video #40 and #42
+  */
+  passwordResetLink: {
+    async sendToken(args) {
+      await sendPasswordResetEmail(args.token, args.identity)
+    }
   }
 })
 

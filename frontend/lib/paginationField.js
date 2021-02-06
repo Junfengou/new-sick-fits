@@ -12,6 +12,8 @@
         1 2 3 4 | 5 6 7 9 | 10 11 12 
             When item [#8] gets deleted, we need to move item [#9] up a page to maintain the consistency of 4 items per page
 
+    SIDE NOTE: This file is called inside the [WithData.js] under the (InMemoryCache) section 
+
 */
 
 import React from "react";

@@ -8,6 +8,8 @@ import 'dotenv/config';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
 import { CartItem } from "./schemas/CartItem";
+import { OrderItem } from "./schemas/OrderItem";
+import { Order } from "./schemas/Order";
 import { extendGraphqlSchema } from './mutations';
 
 const databaseURL =
@@ -66,7 +68,7 @@ export default withAuth (
 
   lists: createSchema({
     // Schema items go in here
-    User, Product, ProductImage, CartItem
+    User, Product, ProductImage, CartItem, OrderItem, Order
   }),
 
   // Custom mutation goes here

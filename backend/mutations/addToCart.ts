@@ -4,9 +4,14 @@ import { KeystoneContext, SessionStore } from "@keystone-next/types";
 import { CartItemCreateInput } from ".././.keystone/schema-types";
 import { Session } from "../types";
 
+
+interface Arguments {
+    productId: string
+}
+
  async function addToCart(
     root: any,
-    {productId} : {productId: string},
+    {productId} : Arguments,
     context: KeystoneContext
     ) :  Promise<CartItemCreateInput>{
 

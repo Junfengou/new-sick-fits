@@ -8,6 +8,7 @@ import calcTotalPrice from "../lib/calcTotalPrice";
 import CloseButton from "./styles/CloseButton";
 import { useCart } from "../lib/CartState";
 import RemoveFromCart from "./RemoveFromCart";
+import { Checkout } from "./Checkout";
 
 // CartStyles => video: #44
 
@@ -67,7 +68,10 @@ function Cart() {
 					<CartItem key={i} item={item} />
 				))}
 			</ul>
-			<footer>Total: {formatMoney(calcTotalPrice(me.cart))}</footer>
+			<footer>
+				<p>Total: {formatMoney(calcTotalPrice(me.cart))} </p>
+				<Checkout />
+			</footer>
 		</CartStyles>
 	);
 }

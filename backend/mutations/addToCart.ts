@@ -1,3 +1,5 @@
+// This is still VERY confusing, refer back to video #46
+
 import { KeystoneContext, SessionStore } from "@keystone-next/types";
 import { CartItemCreateInput } from ".././.keystone/schema-types";
 import { Session } from "../types";
@@ -7,7 +9,6 @@ import { Session } from "../types";
     {productId} : {productId: string},
     context: KeystoneContext
     ) :  Promise<CartItemCreateInput>{
-        console.log("ADDED TO CART")
 
         // 1. Query the current user
         const sesh = context.session as Session;

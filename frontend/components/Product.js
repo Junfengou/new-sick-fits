@@ -5,6 +5,7 @@ import PriceTag from "./styles/PriceTag";
 import Link from "next/link";
 import formatMoney from "../lib/formatMoney";
 import DeleteProduct from "./DeleteProduct";
+import AddToCart from "./AddToCart";
 
 function Product({ item }) {
 	const { id, name, price, description, photo } = item;
@@ -30,6 +31,7 @@ function Product({ item }) {
 					Edit item 🔧🔨
 				</Link>
 				<DeleteProduct id={id}>Delete 💀</DeleteProduct>
+				<AddToCart id={id} />
 			</div>
 		</ItemStyles>
 	);

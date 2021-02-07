@@ -68,7 +68,7 @@ function RequestReset() {
 					/>
 				</label>
 
-				<button type="submit">Request Password Reset</button>
+				<button type="submit"> Password Reset</button>
 			</fieldset>
 		</Form>
 	);

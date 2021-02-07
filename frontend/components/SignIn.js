@@ -40,6 +40,12 @@ function SignIn() {
 		}
 	);
 
+	const error =
+		data?.authenticateUserWithPassword.__typename ===
+		"UserAuthenticationWithPasswordFailure"
+			? data?.authenticateUserWithPassword
+			: undefined;
+
 	async function handleSubmit(e) {
 		e.preventDefault();
 		// console.log(inputs);
@@ -49,16 +55,10 @@ function SignIn() {
 		resetForm();
 		/*
 		Router.push({
-			pathname: `/products`,
-		});
+				pathname: `/products`,
+			});
 		*/
 	}
-
-	const error =
-		data?.authenticateUserWithPassword.__typename ===
-		"UserAuthenticationWithPasswordFailure"
-			? data?.authenticateUserWithPassword
-			: undefined;
 
 	return (
 		<Form method="POST" onSubmit={handleSubmit}>

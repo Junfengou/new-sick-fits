@@ -7,6 +7,8 @@ import { ProductImage } from "./schemas/ProductImage";
 import 'dotenv/config';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
+import { CartItem } from "./schemas/CartItem";
+import { extendGraphqlSchema } from './mutations';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
@@ -64,8 +66,11 @@ export default withAuth (
 
   lists: createSchema({
     // Schema items go in here
-    User, Product, ProductImage
+    User, Product, ProductImage, CartItem
   }),
+
+  // Custom mutation goes here
+  extendGraphqlSchema,
 
   ui: {
     // Show the UI only for people who pass the test

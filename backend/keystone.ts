@@ -10,7 +10,9 @@ import { sendPasswordResetEmail } from './lib/mail';
 import { CartItem } from "./schemas/CartItem";
 import { OrderItem } from "./schemas/OrderItem";
 import { Order } from "./schemas/Order";
+import { Role } from "./schemas/Role";
 import { extendGraphqlSchema } from './mutations';
+import { permissionsList } from './schemas/fields';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
@@ -68,7 +70,7 @@ export default withAuth (
 
   lists: createSchema({
     // Schema items go in here
-    User, Product, ProductImage, CartItem, OrderItem, Order
+    User, Product, ProductImage, CartItem, OrderItem, Order, Role
   }),
 
   // Custom mutation goes here
@@ -77,7 +79,7 @@ export default withAuth (
   ui: {
     // Show the UI only for people who pass the test
     isAccessAllowed: ({ session }) => {
-      // console.log(session);
+      // console.log("session: ", session);
       return !!session?.data;
     },
   },
@@ -86,6 +88,16 @@ export default withAuth (
   // Session is for when someone log in and give them a set of cookie until they log out | cookie expire
   session: withItemData(statelessSessions(sessionConfig), {
     // Graphql query
-    User: `id name email`
+
+    /* On every single session, we query these items
+      files like [addToCard.ts] mutation get access to this
+    */
+    User: `
+      id 
+      name 
+      email 
+      role {
+        ${permissionsList.join(" ")}
+      }`
   })
 }));

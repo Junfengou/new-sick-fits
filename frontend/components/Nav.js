@@ -17,7 +17,7 @@ function Nav() {
 				<>
 					<Link href="/sell">sell </Link>
 					<Link href="/orders">orders </Link>
-					<Link href="/account">account </Link>
+					{/* <Link href="/account">account </Link> */}
 					<SignOut />
 					<button type="button" onClick={toggleCart}>
 						Open cart

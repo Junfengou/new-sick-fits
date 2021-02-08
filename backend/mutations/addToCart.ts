@@ -23,13 +23,20 @@ interface Arguments {
             throw new Error("You must be logged in to do this")
         }
         
+        // [context.session] has all the same information as you were to query it from session in [keystone.ts]
+        // console.log("context: ", context.session);
+        // [context.lists] has all the information on accessing each schema in the backeend
+        // console.log("context.lists : ", context.lists);
+
         // 2. Query the current user's cart
         const allCartItem = await context.lists.CartItem.findMany({
             where: { user: { id: sesh.itemId }, product: { id: productId } },
             // this fucking field need to be plural...
             resolveFields: 'id, quantity',
         });
+        
         const [ existingCartItem ] = allCartItem;
+        
 
         // 3. See if the current item is in their cart
 
